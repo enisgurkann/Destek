@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Admin Login";
+    Layout = "";
+
+}
+@model Destek.Models.kullanici
+<link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="~/Assets/css/icons.css" rel="stylesheet" type="text/css">
+<link href="~/Assets/css/core.css" rel="stylesheet" type="text/css">
+<link href="~/Assets/css/components.css" rel="stylesheet" type="text/css">
+<link href="~/Assets/css/pages.css" rel="stylesheet" type="text/css">
+<link href="~/Assets/css/menu.css" rel="stylesheet" type="text/css">
+<link href="~/Assets/css/responsive.css" rel="stylesheet" type="text/css">
+<script src="~/Assets/js/modernizr.min.js"></script>
+
+<div class="wrapper-page">
+    <div class="panel panel-color panel-primary panel-pages">
+        <div class="panel-heading bg-img">
+            <div class="bg-overlay"></div>
+            <h3 class="text-center m-t-10 text-white">Destek <strong> Yönetici</strong> </h3>
+        </div>
+
+        <div class="panel-body">
+            @using (Html.BeginForm("Login", "AdminLogin", FormMethod.Post, new { @class = "form-horizontal m-t-20" }))
+            {
+
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        @Html.TextBoxFor(f => f.KullaniciAdi, new { title = "Kullanıcı Kodunuzu giriniz.", placeholder = "Kullanıcı Kodu", @class = "form-control input-lg" })
+                        @Html.ValidationMessageFor(m => m.KullaniciAdi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        @Html.PasswordFor(f => f.Sifre, new { title = "Parolanızı giriniz.", placeholder = "Şifre", @class = "form-control input-lg" })
+                        @Html.ValidationMessageFor(m => m.Sifre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationMessage("500", new { @class = "text-danger" });
+                <div class="form-group text-center m-t-40">
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit">Giriş Yap</button>
+                    </div>
+                </div>
+            }
+     
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Assets/js/jquery.min.js"></script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+<script src="~/Assets/js/detect.js"></script>
+<script src="~/Assets/js/fastclick.js"></script>
+<script src="~/Assets/js/jquery.slimscroll.js"></script>
+<script src="~/Assets/js/jquery.blockUI.js"></script>
+<script src="~/Assets/js/waves.js"></script>
+<script src="~/Assets/js/wow.min.js"></script>
+<script src="~/Assets/js/jquery.nicescroll.js"></script>
+<script src="~/Assets/js/jquery.scrollTo.min.js"></script>
+<script src="~/Assets/js/jquery.app.js"></script>

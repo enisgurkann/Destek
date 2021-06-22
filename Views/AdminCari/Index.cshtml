@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Destek.Models.musteri>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Detay")
+</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Cari Listesi</h3>
+            </div>
+            <div class="panel-body">
+                <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Kodu)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Unvan)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.KullaniciAdi)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sifre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Durum)
+                            </th>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Kodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Unvan)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tel)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KullaniciAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sifre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Durum)
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Detay", "Detay", new { id = item.Id }) |
+                                    @Html.ActionLink("Sil", "Sil", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Row -->

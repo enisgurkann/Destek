@@ -1,0 +1,98 @@
+﻿@model Destek.Models.talepmaster
+@{
+    ViewBag.Title = "Detay";
+}
+
+
+@using (Html.BeginForm("Kaydet","Talep",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    if (Model != null && Model.Id > 0)
+    {
+        @Html.HiddenFor(s => s.Id);
+    }
+
+        <div class="form-body">
+            <div class="row">
+                @if (Model != null && Model.Id > 0)
+                {   
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+               
+                <div class="col-md-7">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Baslik, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Baslik, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Baslik, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+            
+                        @Html.LabelFor(model => model.Tipi, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.Tipi, SelectCore.TalepTipiListesi(), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Tipi, "", new { @class = "text-danger" })
+                      
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                     
+                        @Html.LabelFor(model => model.AciliyetDurumu, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.AciliyetDurumu, SelectCore.AciliyetListesi(), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AciliyetDurumu, "", new { @class = "text-danger" })
+                     
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Icerik, htmlAttributes: new { @class = "control-label" })
+                        @if (Model.Id <= 0)
+                        {
+                            @Html.TextAreaFor(model => model.Icerik, new { @class = "form-control", @rows = 10 })
+                        }
+                        else
+                        {
+                            @Html.TextAreaFor(model => model.Icerik, new { @class = "form-control", @rows = 10, @readonly = "readonly" })
+                        }
+                     
+                        @Html.ValidationMessageFor(model => model.Icerik, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cevap, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.Cevap, new { @class = "form-control", @rows = 10,@readonly="readonly"} )
+                        @Html.ValidationMessageFor(model => model.Cevap, "", new { @class = "text-danger" })                  
+                    </div>
+                </div>
+            </div>
+            @if (Model.Id <= 0)
+            {
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="submit" value="Talep Aç" class="btn btn-primary form-control" />
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-warning form-control" href="~/Talep" onclick="talepAc()" id="btnTalepAc"><i class="md md-close"></i> İptal</a>
+                    </div>
+
+                </div>
+            }
+           
+        </div>
+
+}
+
+
+

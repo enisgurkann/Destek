@@ -1,0 +1,106 @@
+﻿<!-- jQuery  -->
+
+<script src="~/Assets/js/jquery.min.js"></script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+<script src="~/Assets/js/detect.js"></script>
+<script src="~/Assets/js/fastclick.js"></script>
+<script src="~/Assets/js/jquery.blockUI.js"></script>
+<script src="~/Assets/js/waves.js"></script>
+<script src="~/Assets/js/wow.min.js"></script>
+<script src="~/Assets/js/jquery.nicescroll.js"></script>
+<script src="~/Assets/js/jquery.scrollTo.min.js"></script>
+<!-- App js -->
+<script src="~/Assets/js/jquery.app.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+@*<script src="~/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="~/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>*@
+
+<!-- moment js  -->
+<script src="~/Assets/plugins/moment/moment.js"></script>
+<!-- counters  -->
+<script src="~/Assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
+<script src="~/Assets/plugins/counterup/jquery.counterup.min.js"></script>
+<!-- sweet alert  -->
+<script src="~/Assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- flot Chart -->
+<script src="~/Assets/plugins/flot-chart/jquery.flot.js"></script>
+<script src="~/Assets/plugins/flot-chart/jquery.flot.time.js"></script>
+<script src="~/Assets/plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
+<script src="~/Assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+<script src="~/Assets/plugins/flot-chart/jquery.flot.pie.js"></script>
+<script src="~/Assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+<script src="~/Assets/plugins/flot-chart/jquery.flot.stack.js"></script>
+<script src="~/Assets/plugins/flot-chart/jquery.flot.crosshair.js"></script>
+
+
+   <!-- Datatables-->
+<script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Assets/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="~/Assets/plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="~/Assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+<script src="~/Assets/plugins/datatables/jszip.min.js"></script>
+<script src="~/Assets/plugins/datatables/pdfmake.min.js"></script>
+<script src="~/Assets/plugins/datatables/vfs_fonts.js"></script>
+<script src="~/Assets/plugins/datatables/buttons.html5.min.js"></script>
+<script src="~/Assets/plugins/datatables/buttons.print.min.js"></script>
+<script src="~/Assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+<script src="~/Assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+<script src="~/Assets/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="~/Assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+<script src="~/Assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+<!-- todos app  -->
+<script src="~/Assets/pages/jquery.todo.js"></script>
+<!-- chat app  -->
+<script src="~/Assets/pages/jquery.chat.js"></script>
+<!-- dashboard  -->
+<script src="~/Assets/pages/jquery.dashboard.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('.counter').counterUp({
+                delay: 100,
+                time: 1200
+            });
+
+            var table = $('#datatable').DataTable({
+                fixedHeader: true,
+                "pageLength": 5,
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
+                }
+            });
+
+            $('form').submit(function () {
+                if ($(this).find('.input-validation-error').length == 0) {
+                    //$('#AppointmentForm').block({ message: "Form gönderiliyor..." });
+                    $.blockUI({
+                        message: "Form gönderiliyor...",
+                        css: {
+                            border: 'none',
+                            padding: '15px',
+                            backgroundColor: '#000',
+                            '-webkit-border-radius': '10px',
+                            '-moz-border-radius': '10px',
+                            opacity: .5,
+                            color: '#fff'
+                        }
+                    });
+                    $(this).find(':submit').attr('disabled', 'disabled');
+                }
+
+            });
+   
+            //$.fn.datepicker.defaults.format = "dd-MM-yyyy";
+            $(".date").datepicker({
+                dateFormat: "yy/mm/dd",
+                changeYear: true,
+                monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+                dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
+                firstDay: 1
+            });
+    
+        });
+</script>
+

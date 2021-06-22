@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="author" content="Coderthemes">
+    <link rel="shortcut icon" href="assets/images/favicon_1.ico">
+    <title>@ViewBag.Title</title>
+    <link href="~/Assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/css/pages.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/css/responsive.css" rel="stylesheet" type="text/css">
+    <script src="~/Assets/js/modernizr.min.js"></script>
+    <!-- JQUERY css-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Plugins css-->
+    <link href="~/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- DataTables -->
+    <link href="~/Assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @{
+        PreCore Core = new PreCore();
+        bool AdminDurum = Core.AdminDurum();
+        bool CariLoginStatus = Core.CariLoginDurumu();
+        string CariUnvani = Core.CariUnvaniVer();
+        string CariKodu = Core.CariKoduVer();
+        Destek.Models.ayarlar SiteAyar = Core.FirmaAyarlari();
+    }
+
+
+
+
+    @if (SiteAyar.ZopimStatus == "E" && !AdminDurum)
+    {
+         <!--Start of Zendesk Chat Script-->
+        <script type="text/javascript">
+            window.$zopim || (function (d, s) {
+                var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+                d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                    z.set.
+                    _.push(o)
+                }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+                $.src = "@SiteAyar.ZopimAdres"; z.t = +new Date; $.
+                type = "text/javascript"; e.parentNode.insertBefore($, e)
+            })(document, "script");
+            $zopim(function () {
+                $zopim.livechat.setName('@CariUnvani.ToString() - @CariKodu.ToString() ');
+                $zopim.livechat.bubble.hide(true);
+            });
+        </script>
+        <!--End of Zendesk Chat Script-->
+    }
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <header id="topnav">
+        <div class="topbar-main">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="topbar-left">
+                @if (!AdminDurum)
+                {
+                    <a href="~/Home/" class="logo"><i class="md md-terrain"></i> <span>EnDestek</span></a>
+                }
+                else
+                {
+                    <a href="~/AdminHome/" class="logo"><i class="md md-terrain"></i> <span>Destek Yönetim Paneli</span></a>
+                }
+                </div>
+                <!-- End Logo container-->
+
+                <div class="menu-extras">
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                       @Html.Partial("_FastSearch")
+                       @Html.Partial("_LayoutBildirimler")
+                       @if (!AdminDurum)
+                       {
+                        @Html.Partial("_LayoutUser")
+                       }
+                       else
+                       {
+                        @Html.Partial("_AdminLayoutUser")
+                       }
+                      
+                    </ul>
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-custom">
+            <div class="container">
+                @if (!AdminDurum)
+                {
+                    @Html.Partial("_LayoutMasterMenu")
+                }
+                else
+                {
+                    @Html.Partial("_LayoutMasterAdminMenu")
+                }
+             
+            </div>
+        </div>
+    </header>
+    <!-- End Navigation Bar-->
+
+    <div class="wrapper">
+        <div class="container">
+            @RenderBody()
+            @Html.Partial("_LayoutFooter")
+        </div>
+        <!-- end container -->
+
+    </div>
+
+    @Html.Partial("_Librarys")
+</body>
+</html>

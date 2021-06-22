@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model Destek.Models.HomeModel
+   <!-- Start Widget -->
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-3">
+        <div class="mini-stat clearfix bx-shadow bg-info">
+            <span class="mini-stat-icon"><i class="ion-reply-all"></i></span>
+            <div class="mini-stat-info text-right">
+                <span class="counter">@Model.BekleyenTalepSayisi</span>
+               Bekleyen Talep Sayısı
+            </div>          
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-3">
+        <div class="mini-stat clearfix bg-purple bx-shadow">
+            <span class="mini-stat-icon"><i class="ion-pull-request"></i></span>
+            <div class="mini-stat-info text-right">
+                <span class="counter">@Model.AktifYeniIstekSayisi</span>
+                Aktif Yeni istek Sayısı
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-3">
+        <div class="mini-stat clearfix bg-danger bx-shadow">
+            <span class="mini-stat-icon"><i class="ion-alert"></i></span>
+            <div class="mini-stat-info text-right">
+                <span class="counter">@Model.AktifHataTalebiSayisi</span>
+                Aktif Hata Talebi Sayısı
+            </div>
+          
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-3">
+        <div class="mini-stat clearfix bg-success bx-shadow">
+            <span class="mini-stat-icon"><i class="ion-eye"></i></span>
+            <div class="mini-stat-info text-right">
+                <span class="counter">@Model.CevaplananAcikTalepSayisi</span>
+              Cevaplanan Açık Talep Sayısı
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- End row-->
